@@ -41,15 +41,12 @@
             background-color: #ff3385;
         }
 
-        .flower {
-            position: absolute;
-            animation: flowerAnim 2s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes flowerAnim {
-            0% { top: 0; left: 0; opacity: 0; }
-            100% { top: 100vh; left: 100vw; opacity: 1; }
+        .popup-image {
+            display: none;
+            max-width: 80%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 30px;
         }
 
         .love-letter {
@@ -63,18 +60,27 @@
             margin: auto;
             font-size: 1.2rem;
             line-height: 1.8;
+            margin-top: 30px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
         .love-letter p {
             margin-bottom: 20px;
         }
 
-        .popup-image {
-            display: none;
-            max-width: 100%;
-            height: auto;
-            border-radius: 15px;
-            margin-top: 30px;
+        /* 꽃 애니메이션 */
+        .flower {
+            position: absolute;
+            animation: flowerAnim 5s linear infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes flowerAnim {
+            0% { opacity: 0; top: 50%; left: 0%; }
+            50% { opacity: 1; top: 80%; left: 50%; }
+            100% { opacity: 0; top: 100%; left: 100%; }
         }
     </style>
 </head>
@@ -84,7 +90,13 @@
     <p class="scroll-guide">👇 Scroll down my baby ❤️</p>
     
     <!-- 꽃 애니메이션 -->
-    <div class="flower" style="top: 50px; left: 10vw;">
+    <div class="flower" style="top: 20%; left: 10%;">
+        <img src="https://i.imgur.com/g5tpCKt.png" width="50" height="50">
+    </div>
+    <div class="flower" style="top: 30%; left: 80%;">
+        <img src="https://i.imgur.com/g5tpCKt.png" width="50" height="50">
+    </div>
+    <div class="flower" style="top: 60%; left: 20%;">
         <img src="https://i.imgur.com/g5tpCKt.png" width="50" height="50">
     </div>
 
@@ -92,8 +104,21 @@
         <button class="click-btn" id="clickMeBtn">Click me</button>
     </div>
 
-    <div id="imagePopup" class="popup-image">
-        <img src="https://your-photo-url.jpg" alt="Couple Photo">
+    <!-- 사진 팝업들 -->
+    <div id="imagePopup1" class="popup-image">
+        <img src="photo1.jpg" alt="Couple Photo 1">
+    </div>
+    <div id="imagePopup2" class="popup-image">
+        <img src="photo2.jpg" alt="Couple Photo 2">
+    </div>
+    <div id="imagePopup3" class="popup-image">
+        <img src="photo3.jpg" alt="Couple Photo 3">
+    </div>
+    <div id="imagePopup4" class="popup-image">
+        <img src="photo4.jpg" alt="Couple Photo 4">
+    </div>
+    <div id="imagePopup5" class="popup-image">
+        <img src="photo5.jpg" alt="Couple Photo 5">
     </div>
 
     <div class="love-letter" id="loveLetter">
@@ -105,36 +130,35 @@
 
     <script>
         let clickBtn = document.getElementById("clickMeBtn");
-        let imagePopup = document.getElementById("imagePopup");
+        let imagePopup1 = document.getElementById("imagePopup1");
+        let imagePopup2 = document.getElementById("imagePopup2");
+        let imagePopup3 = document.getElementById("imagePopup3");
+        let imagePopup4 = document.getElementById("imagePopup4");
+        let imagePopup5 = document.getElementById("imagePopup5");
         let loveLetter = document.getElementById("loveLetter");
-        let scrollBtn = document.getElementById("scroll-btn");
+
+        let clickCount = 0;
 
         clickBtn.addEventListener("click", function() {
-            // 첫 번째 클릭 -> 이미지 팝업
-            if (!imagePopup.style.display || imagePopup.style.display === "none") {
-                imagePopup.style.display = "block";
+            clickCount++;
+
+            if (clickCount === 1) {
+                imagePopup1.style.display = "block";
                 clickBtn.textContent = "Click me one more time";
-            } else {
-                // 두 번째 클릭 -> 편지 팝업
+            } else if (clickCount === 2) {
+                imagePopup2.style.display = "block";
+            } else if (clickCount === 3) {
+                imagePopup3.style.display = "block";
+            } else if (clickCount === 4) {
+                imagePopup4.style.display = "block";
+            } else if (clickCount === 5) {
+                imagePopup5.style.display = "block";
+            } else if (clickCount === 6) {
                 loveLetter.style.display = "block";
-                scrollBtn.style.display = "none"; // 버튼 숨기기
+                loveLetter.style.opacity = 1; // 자연스럽게 나타나게 설정
+                clickBtn.style.display = "none"; // 버튼 숨기기
             }
         });
-
-        // 꽃 애니메이션
-        setInterval(function() {
-            let flower = document.createElement("div");
-            flower.style.position = "absolute";
-            flower.style.top = `${Math.random() * 100}vh`;
-            flower.style.left = `${Math.random() * 100}vw`;
-            flower.innerHTML = `<img src="https://i.imgur.com/g5tpCKt.png" width="50" height="50">`;
-            document.body.appendChild(flower);
-
-            // 5초 후 꽃 애니메이션 종료
-            setTimeout(() => {
-                flower.remove();
-            }, 5000);
-        }, 3000);
     </script>
 
 </body>
