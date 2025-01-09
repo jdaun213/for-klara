@@ -49,6 +49,7 @@
             flex-wrap: wrap;
             justify-content: center;
             margin-top: 30px;
+            display: none; /* 사진들 처음에는 숨겨짐 */
         }
 
         .popup-gallery div {
@@ -122,7 +123,7 @@
             line-height: 1.8;
             margin-top: 30px;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out; /* 자연스럽게 나타나는 효과 */
         }
 
         .love-letter p {
@@ -201,32 +202,17 @@
             clickCount++;
 
             if (clickCount === 1) {
-                gallery.style.display = "flex";
-                imagePopup1.style.display = "block";
-                imagePopup2.style.display = "block";
-                imagePopup3.style.display = "block";
-                imagePopup4.style.display = "block";
-                imagePopup5.style.display = "block";
-                clickBtn.textContent = "Click me one more time";
+                gallery.style.display = "flex";  // 첫 클릭 시 갤러리 사진들 나타나게
+                setTimeout(function() {
+                    imagePopup1.style.display = "block";
+                    imagePopup2.style.display = "block";
+                    imagePopup3.style.display = "block";
+                    imagePopup4.style.display = "block";
+                    imagePopup5.style.display = "block";
+                }, 500); // 0.5초 뒤에 팝업들이 나타나도록 설정
+                clickBtn.textContent = "Click me one more time";  // 버튼 텍스트 변경
             } else if (clickCount === 2) {
                 loveLetter.style.display = "block";
-                loveLetter.style.opacity = 1; // 자연스럽게 나타나게 설정
-                clickBtn.style.display = "none"; // 버튼 숨기기
-            }
-        });
-
-        function closePopup() {
-            let popups = document.querySelectorAll('.popup-image');
-            popups.forEach(popup => {
-                popup.style.display = 'none';
-            });
-        }
-
-        function showPopup(imageId) {
-            let popup = document.getElementById(imageId);
-            popup.style.display = 'block';
-        }
-    </script>
-
-</body>
-</html>
+                setTimeout(function() {
+                    loveLetter.style.opacity = 1; // 자연스럽게 나타나게 설정
+                }, 100); // 0.1초 뒤에 나타나도록 설정
