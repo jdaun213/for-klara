@@ -12,7 +12,6 @@
             text-align: center;
             padding: 20px;
             margin: 0;
-            overflow-x: hidden;
         }
 
         h1 {
@@ -41,12 +40,35 @@
             background-color: #ff3385;
         }
 
+        .popup-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .popup-gallery div {
+            margin: 10px;
+            padding: 15px;
+            border: 3px solid #fff;
+            border-radius: 15px;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .popup-gallery div:hover {
+            transform: scale(1.1);
+        }
+
         .popup-image {
             display: none;
-            max-width: 80%;
-            height: auto;
+            max-width: 100%;
+            max-height: 100%;
             border-radius: 15px;
-            margin-top: 30px;
         }
 
         .love-letter {
@@ -68,20 +90,6 @@
         .love-letter p {
             margin-bottom: 20px;
         }
-
-        /* 꽃 애니메이션 */
-        .flower {
-            position: absolute;
-            animation: flowerAnim 5s linear infinite;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        @keyframes flowerAnim {
-            0% { opacity: 0; top: 50%; left: 0%; }
-            50% { opacity: 1; top: 80%; left: 50%; }
-            100% { opacity: 0; top: 100%; left: 100%; }
-        }
     </style>
 </head>
 <body>
@@ -89,36 +97,27 @@
     <h1>For My Lovely Klara ❤️</h1>
     <p class="scroll-guide">👇 Scroll down my baby ❤️</p>
     
-    <!-- 꽃 애니메이션 -->
-    <div class="flower" style="top: 20%; left: 10%;">
-        <img src="https://i.imgur.com/g5tpCKt.png" width="50" height="50">
-    </div>
-    <div class="flower" style="top: 30%; left: 80%;">
-        <img src="https://i.imgur.com/g5tpCKt.png" width="50" height="50">
-    </div>
-    <div class="flower" style="top: 60%; left: 20%;">
-        <img src="https://i.imgur.com/g5tpCKt.png" width="50" height="50">
-    </div>
-
     <div id="scroll-btn">
         <button class="click-btn" id="clickMeBtn">Click me</button>
     </div>
 
-    <!-- 사진 팝업들 -->
-    <div id="imagePopup1" class="popup-image">
-        <img src="photo1.jpg" alt="Couple Photo 1">
-    </div>
-    <div id="imagePopup2" class="popup-image">
-        <img src="photo2.jpg" alt="Couple Photo 2">
-    </div>
-    <div id="imagePopup3" class="popup-image">
-        <img src="photo3.jpg" alt="Couple Photo 3">
-    </div>
-    <div id="imagePopup4" class="popup-image">
-        <img src="photo4.jpg" alt="Couple Photo 4">
-    </div>
-    <div id="imagePopup5" class="popup-image">
-        <img src="photo5.jpg" alt="Couple Photo 5">
+    <!-- 갤러리 사진들 -->
+    <div class="popup-gallery" id="gallery">
+        <div id="imagePopup1" class="popup-image">
+            <img src="photo1.jpg" alt="Couple Photo 1">
+        </div>
+        <div id="imagePopup2" class="popup-image">
+            <img src="photo2.jpg" alt="Couple Photo 2">
+        </div>
+        <div id="imagePopup3" class="popup-image">
+            <img src="photo3.jpg" alt="Couple Photo 3">
+        </div>
+        <div id="imagePopup4" class="popup-image">
+            <img src="photo4.jpg" alt="Couple Photo 4">
+        </div>
+        <div id="imagePopup5" class="popup-image">
+            <img src="photo5.jpg" alt="Couple Photo 5">
+        </div>
     </div>
 
     <div class="love-letter" id="loveLetter">
@@ -130,6 +129,7 @@
 
     <script>
         let clickBtn = document.getElementById("clickMeBtn");
+        let gallery = document.getElementById("gallery");
         let imagePopup1 = document.getElementById("imagePopup1");
         let imagePopup2 = document.getElementById("imagePopup2");
         let imagePopup3 = document.getElementById("imagePopup3");
@@ -143,17 +143,14 @@
             clickCount++;
 
             if (clickCount === 1) {
+                gallery.style.display = "flex";
                 imagePopup1.style.display = "block";
+                imagePopup2.style.display = "block";
+                imagePopup3.style.display = "block";
+                imagePopup4.style.display = "block";
+                imagePopup5.style.display = "block";
                 clickBtn.textContent = "Click me one more time";
             } else if (clickCount === 2) {
-                imagePopup2.style.display = "block";
-            } else if (clickCount === 3) {
-                imagePopup3.style.display = "block";
-            } else if (clickCount === 4) {
-                imagePopup4.style.display = "block";
-            } else if (clickCount === 5) {
-                imagePopup5.style.display = "block";
-            } else if (clickCount === 6) {
                 loveLetter.style.display = "block";
                 loveLetter.style.opacity = 1; // 자연스럽게 나타나게 설정
                 clickBtn.style.display = "none"; // 버튼 숨기기
