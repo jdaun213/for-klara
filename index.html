@@ -1,174 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Beautiful Moments 🌸</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #2f2f2f; /* 어두운 배경 색상 */
-      color: #f0f0f0; /* 밝은 텍스트 색상 */
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter for Klara</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2d2d2d;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            overflow-x: hidden;
+        }
 
-    h1 {
-      color: #ff69b4;
-      margin-top: 50px;
-    }
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 50px;
+        }
 
-    p {
-      font-size: 18px;
-    }
+        .scroll-guide {
+            font-size: 1.2rem;
+            color: #ff66b2;
+            margin-top: 30px;
+        }
 
-    .hidden {
-      display: none;
-    }
+        .click-btn {
+            background-color: #ff66b2;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-    #photo-gallery img {
-      width: 60%;
-      margin: 10px;
-      border-radius: 10px;
-      opacity: 0;
-      transform: scale(0.8);
-      transition: all 0.5s ease;
-    }
+        .click-btn:hover {
+            background-color: #ff3385;
+        }
 
-    #photo-gallery.active img {
-      opacity: 1;
-      transform: scale(1);
-    }
+        .flower {
+            position: absolute;
+            animation: flowerAnim 2s linear infinite;
+            z-index: -1;
+        }
 
-    #show-love {
-      background-color: #ff69b4;
-      border: none;
-      padding: 12px 24px;
-      font-size: 22px;
-      color: white;
-      cursor: pointer;
-      border-radius: 8px;
-      transition: background-color 0.3s;
-      margin-top: 20px;
-    }
+        @keyframes flowerAnim {
+            0% { top: 0; left: 0; opacity: 0; }
+            100% { top: 100vh; left: 100vw; opacity: 1; }
+        }
 
-    #show-love:hover {
-      background-color: #ff1493;
-    }
+        .love-letter {
+            display: none;
+            background: url('https://i.imgur.com/7a9sbP6.png') no-repeat center center;
+            background-size: cover;
+            padding: 30px;
+            color: #fff;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
 
-    #love-letter {
-      display: none;
-      background: url('heart-letter-background.jpg') no-repeat center;
-      background-size: cover;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 10px;
-      max-width: 90%;
-      color: white;
-      font-size: 20px;
-      line-height: 1.6;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 1s ease;
-    }
+        .love-letter p {
+            margin-bottom: 20px;
+        }
 
-    #love-letter.show {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    #scroll-guide {
-      font-size: 20px;
-      color: #ff69b4;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-
-    #scroll-guide span {
-      font-size: 24px;
-      color: #fff0f0;
-    }
-
-  </style>
+        .popup-image {
+            display: none;
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1>🌸 Our Beautiful Moments 🌸</h1>
-    <p>Here's a collection of our sweetest memories together! 💖</p>
-    <div id="scroll-guide">Scroll down to find the magic! <span>👇</span></div>
-  </header>
-
-  <main>
-    <!-- 사진 갤러리 -->
-    <div id="photo-gallery" class="hidden">
-      <img src="photo1.jpg" alt="Memory 1">
-      <img src="photo2.jpg" alt="Memory 2">
-      <img src="photo3.jpg" alt="Memory 3">
-      <img src="photo4.jpg" alt="Memory 4">
-      <img src="photo5.jpg" alt="Memory 5">
+    <h1>For My Lovely Klara ❤️</h1>
+    <p class="scroll-guide">👇 Scroll down my baby ❤️</p>
+    
+    <!-- 꽃 애니메이션 -->
+    <div class="flower" style="top: 50px; left: 10vw;">
+        <img src="https://i.imgur.com/g5tpCKt.png" width="50" height="50">
     </div>
 
-    <!-- 버튼 -->
-    <button id="show-love">Click Me 💖</button>
+    <div id="scroll-btn">
+        <button class="click-btn" id="clickMeBtn">Click me</button>
+    </div>
 
-    <!-- 장문의 사랑 편지 -->
-    <section id="love-letter">
-      <h2>A Love Letter to My Beloved</h2>
-      <p>My Dearest klara eleonore singer,</p>
-      <p>
-        I know I haven’t been the best at expressing myself lately. I know sometimes my actions may have hurt you, and I deeply regret that. I want you to know that I never meant to hurt you. I love you with all my heart, and the distance between us makes me miss you even more.
-      </p>
-      <p>
-        There are moments when I feel overwhelmed, and I might say things that don’t reflect how much I truly care for you. Please know that I never want to hurt you or make you feel unimportant. You mean the world to me, and I can’t bear the thought of causing you pain.
-      </p>
-      <p>
-        Being far away from you has shown me just how precious you are to me. I want to hold you, talk to you, and share every part of my life with you. My heart belongs to you, no matter the distance.
-      </p>
-      <p>
-        You’re the one I think of when I wake up, and the one I dream of at night. Every little thing about you fills me with joy, and even though words may fail me, please know that my love for you is constant and true.
-      </p>
-      <p>
-        I am so sorry if my words or actions have ever made you feel less than the amazing person that you are. I am grateful for your patience, your love, and your understanding. Thank you for staying by my side through everything.
-      </p>
-      <p>
-        I promise you that no matter how hard things get, I will always love you. I will always do my best to support you and be the partner you deserve. You are everything to me, and I will never stop loving you.
-      </p>
-      <p>
-        I hope that with time, we can build even more beautiful memories together, even across the distance. Until we are reunited, please remember that I love you more than words can express.
-      </p>
-      <p>Yours Forever,</p>
-      <p>junseong park </p>
-    </section>
-  </main>
+    <div id="imagePopup" class="popup-image">
+        <img src="https://your-photo-url.jpg" alt="Couple Photo">
+    </div>
 
-  <footer>
-    <p>&copy; 2025 Junseong Park. All rights reserved.</p>
-  </footer>
+    <div class="love-letter" id="loveLetter">
+        <p>My dearest Klara,</p>
+        <p>I want to begin by telling you how deeply sorry I am for the moments when I wasn’t my best for you. I never meant to make you feel hurt or unappreciated, and I regret every second of it. But above all, I want you to know this: My love for you is infinite, and every day with you is a blessing. Even when we’re far apart, my heart beats only for you. You are my everything.</p>
+        <p>We may have our ups and downs, but I promise you this—no matter what happens, I will always choose you. You are the love of my life, and I will spend every moment showing you just how much you mean to me. I vow to love you, to care for you, to stand by you, and to grow with you, for the rest of my life.</p>
+        <p>I am here for you, through thick and thin, and I will always cherish you. Together, we will create a future full of love, joy, and beautiful memories. I love you more than words can say, and I always will. Forever yours, Junseong 💖</p>
+    </div>
 
-  <script>
-    let clickCount = 0;
+    <script>
+        let clickBtn = document.getElementById("clickMeBtn");
+        let imagePopup = document.getElementById("imagePopup");
+        let loveLetter = document.getElementById("loveLetter");
+        let scrollBtn = document.getElementById("scroll-btn");
 
-    document.getElementById("show-love").addEventListener("click", function () {
-      clickCount++;
+        clickBtn.addEventListener("click", function() {
+            // 첫 번째 클릭 -> 이미지 팝업
+            if (!imagePopup.style.display || imagePopup.style.display === "none") {
+                imagePopup.style.display = "block";
+                clickBtn.textContent = "Click me one more time";
+            } else {
+                // 두 번째 클릭 -> 편지 팝업
+                loveLetter.style.display = "block";
+                scrollBtn.style.display = "none"; // 버튼 숨기기
+            }
+        });
 
-      // 첫 번째 클릭: 사진 갤러리 보이게 하기
-      if (clickCount === 1) {
-        document.getElementById("photo-gallery").classList.remove("hidden");
-        document.getElementById("photo-gallery").classList.add("active");
-        document.getElementById("show-love").innerText = "Click Me One More Time 💖";
-      }
+        // 꽃 애니메이션
+        setInterval(function() {
+            let flower = document.createElement("div");
+            flower.style.position = "absolute";
+            flower.style.top = `${Math.random() * 100}vh`;
+            flower.style.left = `${Math.random() * 100}vw`;
+            flower.innerHTML = `<img src="https://i.imgur.com/g5tpCKt.png" width="50" height="50">`;
+            document.body.appendChild(flower);
 
-      // 두 번째 클릭: 사랑 편지 보이게 하기
-      if (clickCount === 2) {
-        const loveLetter = document.getElementById("love-letter");
-        loveLetter.classList.add("show");
-      }
-    });
-  </script>
+            // 5초 후 꽃 애니메이션 종료
+            setTimeout(() => {
+                flower.remove();
+            }, 5000);
+        }, 3000);
+    </script>
 
 </body>
 </html>
