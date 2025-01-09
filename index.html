@@ -7,15 +7,16 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to top, #ffb3b3, #fff5e6); /* 밝은 파스텔 그라디언트 */
+            background: linear-gradient(to top, #ffb3b3, #fff5e6);
             color: #333;
             text-align: center;
             padding: 20px;
             margin: 0;
+            box-sizing: border-box;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-top: 50px;
             color: #ff66b2;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -31,8 +32,8 @@
         .click-btn {
             background-color: #ff66b2;
             color: white;
-            padding: 15px 30px;
-            font-size: 1.5rem;
+            padding: 12px 24px;
+            font-size: 1.2rem;
             border: none;
             border-radius: 30px;
             cursor: pointer;
@@ -49,7 +50,7 @@
             flex-wrap: wrap;
             justify-content: center;
             margin-top: 30px;
-            display: none; /* 사진들 처음에는 숨겨짐 */
+            display: none;
         }
 
         .popup-gallery div {
@@ -113,7 +114,7 @@
 
         .love-letter {
             display: none;
-            background-color: #ff66b2; /* 편지지 배경 제거 후 기본 색상으로 */
+            background-color: #ff66b2;
             color: #fff;
             padding: 30px;
             border-radius: 15px;
@@ -123,7 +124,7 @@
             line-height: 1.8;
             margin-top: 30px;
             opacity: 0;
-            transition: opacity 1s ease-in-out; /* 자연스럽게 나타나는 효과 */
+            transition: opacity 1s ease-in-out;
         }
 
         .love-letter p {
@@ -140,6 +141,27 @@
             background: url('https://www.transparenttextures.com/patterns/clouds.png');
             background-size: cover;
             z-index: -1;
+        }
+
+        /* 모바일 최적화 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .click-btn {
+                font-size: 1.1rem;
+                padding: 10px 20px;
+            }
+
+            .popup-gallery div {
+                width: 120px;
+                height: 120px;
+            }
+
+            .love-letter {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -210,9 +232,4 @@
                     imagePopup4.style.display = "block";
                     imagePopup5.style.display = "block";
                 }, 500); // 0.5초 뒤에 팝업들이 나타나도록 설정
-                clickBtn.textContent = "Click me one more time";  // 버튼 텍스트 변경
-            } else if (clickCount === 2) {
-                loveLetter.style.display = "block";
-                setTimeout(function() {
-                    loveLetter.style.opacity = 1; // 자연스럽게 나타나게 설정
-                }, 100); // 0.1초 뒤에 나타나도록 설정
+                clickBtn.textContent = "Click me one more time";
