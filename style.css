@@ -1,0 +1,83 @@
+body {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #ffe4e1; /* 연한 핑크 */
+  color: #444;
+}
+
+header {
+  background-color: #ff69b4; /* 핑크 */
+  color: white;
+  padding: 20px 0;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+main {
+  margin: 20px auto;
+}
+
+#photo-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  opacity: 0; /* 기본적으로 투명 */
+  transform: scale(0); /* 기본적으로 축소 */
+  transition: transform 1s, opacity 1s; /* 애니메이션 효과 */
+}
+
+#photo-gallery.active {
+  opacity: 1; /* 투명도 제거 */
+  transform: scale(1); /* 원래 크기로 */
+}
+
+.gallery-photo {
+  max-width: 150px;
+  height: auto;
+  border-radius: 10px;
+  border: 3px solid #ff69b4;
+  transition: transform 0.3s;
+}
+
+.gallery-photo:hover {
+  transform: scale(1.1); /* 사진 확대 효과 */
+}
+
+button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #ff85c5;
+}
+
+#love-message {
+  font-size: 1.2em;
+  margin-top: 20px;
+  color: #ff69b4;
+}
+
+footer {
+  background-color: #ff69b4;
+  color: white;
+  padding: 10px 0;
+  margin-top: 30px;
+}
+
+/* 숨기기 클래스 */
+.hidden {
+  display: none;
+}
