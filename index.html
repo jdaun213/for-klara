@@ -3,10 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Memories 🌸</title>
+  <title>Our Beautiful Moments 🌸</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fef0f0;
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff69b4;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #photo-gallery img {
+      width: 60%;
+      margin: 10px;
+      border-radius: 10px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s ease;
+    }
+
+    #photo-gallery.active img {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #show-love {
+      background-color: #ff69b4;
+      border: none;
+      padding: 10px 20px;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    #show-love:hover {
+      background-color: #ff1493;
+    }
+
+    #love-letter {
+      display: none;
+      background: url('heart-letter-background.jpg') no-repeat center;
+      background-size: cover;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      max-width: 90%;
+      color: white;
+      font-size: 20px;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    #love-letter.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
+
   <header>
     <h1>🌸 Our Beautiful Moments 🌸</h1>
     <p>Here's a collection of our sweetest memories together! 💖</p>
@@ -15,20 +82,70 @@
   <main>
     <!-- 사진 갤러리 -->
     <div id="photo-gallery" class="hidden">
-      <img src="photo1.jpg" alt="Memory 1" class="gallery-photo">
-      <img src="photo2.jpg" alt="Memory 2" class="gallery-photo">
-      <img src="photo3.jpg" alt="Memory 3" class="gallery-photo">
-      <img src="photo4.jpg" alt="Memory 4" class="gallery-photo">
-      <img src="photo5.jpg" alt="Memory 5" class="gallery-photo">
+      <img src="photo1.jpg" alt="Memory 1">
+      <img src="photo2.jpg" alt="Memory 2">
+      <img src="photo3.jpg" alt="Memory 3">
+      <img src="photo4.jpg" alt="Memory 4">
+      <img src="photo5.jpg" alt="Memory 5">
     </div>
 
     <!-- 버튼 -->
-    <button id="show-love">Click Me One More Time 💕</button>
+    <button id="show-love">Click Me 💖</button>
 
     <!-- 장문의 사랑 편지 -->
-    <section id="love-letter" style="display: none;">
+    <section id="love-letter">
       <h2>A Love Letter to My Beloved</h2>
-      <p>My Dearest klara eleonore singer,</p>
+      <p>My Dearest [Her Name],</p>
       <p>
-        I know I haven’t been the best at expressing myself lately. I know sometimes my actions may have hurt you, and I deeply regret that. I want you to know that I never meant to hurt you. I love you with all my heart, and the distance between us makes me miss you even more. 
-      </p
+        I know I haven’t been the best at expressing myself lately. I know sometimes my actions may have hurt you, and I deeply regret that. I want you to know that I never meant to hurt you. I love you with all my heart, and the distance between us makes me miss you even more.
+      </p>
+      <p>
+        There are moments when I feel overwhelmed, and I might say things that don’t reflect how much I truly care for you. Please know that I never want to hurt you or make you feel unimportant. You mean the world to me, and I can’t bear the thought of causing you pain.
+      </p>
+      <p>
+        Being far away from you has shown me just how precious you are to me. I want to hold you, talk to you, and share every part of my life with you. My heart belongs to you, no matter the distance.
+      </p>
+      <p>
+        You’re the one I think of when I wake up, and the one I dream of at night. Every little thing about you fills me with joy, and even though words may fail me, please know that my love for you is constant and true.
+      </p>
+      <p>
+        I am so sorry if my words or actions have ever made you feel less than the amazing person that you are. I am grateful for your patience, your love, and your understanding. Thank you for staying by my side through everything.
+      </p>
+      <p>
+        I promise you that no matter how hard things get, I will always love you. I will always do my best to support you and be the partner you deserve. You are everything to me, and I will never stop loving you.
+      </p>
+      <p>
+        I hope that with time, we can build even more beautiful memories together, even across the distance. Until we are reunited, please remember that I love you more than words can express.
+      </p>
+      <p>Yours Forever,</p>
+      <p>[Your Name]</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Junseong Park. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let clickCount = 0;
+
+    document.getElementById("show-love").addEventListener("click", function () {
+      clickCount++;
+
+      // 첫 번째 클릭: 사진 갤러리 보이게 하기
+      if (clickCount === 1) {
+        document.getElementById("photo-gallery").classList.remove("hidden");
+        document.getElementById("photo-gallery").classList.add("active");
+        document.getElementById("show-love").innerText = "Click Me One More Time 💖";
+      }
+
+      // 두 번째 클릭: 사랑 편지 보이게 하기
+      if (clickCount === 2) {
+        const loveLetter = document.getElementById("love-letter");
+        loveLetter.classList.add("show");
+      }
+    });
+  </script>
+
+</body>
+</html>
