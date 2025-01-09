@@ -21,25 +21,32 @@ main {
   margin: 20px auto;
 }
 
-#photo-container {
-  margin: 20px auto;
+#photo-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  opacity: 0; /* 기본적으로 투명 */
+  transform: scale(0); /* 기본적으로 축소 */
+  transition: transform 1s, opacity 1s; /* 애니메이션 효과 */
 }
 
-#girlfriend-photo {
+#photo-gallery.active {
+  opacity: 1; /* 투명도 제거 */
+  transform: scale(1); /* 원래 크기로 */
+}
+
+.gallery-photo {
   max-width: 150px;
-  border-radius: 50%;
-  border: 5px solid #ff69b4;
-  margin-bottom: 20px;
-}
-
-#flower-container {
-  margin: 20px auto;
-  width: 200px;
-}
-
-#flower-img {
-  max-width: 100%;
   height: auto;
+  border-radius: 10px;
+  border: 3px solid #ff69b4;
+  transition: transform 0.3s;
+}
+
+.gallery-photo:hover {
+  transform: scale(1.1); /* 사진 확대 효과 */
 }
 
 button {
@@ -63,13 +70,14 @@ button:hover {
   color: #ff69b4;
 }
 
-audio {
-  margin-top: 20px;
-}
-
 footer {
   background-color: #ff69b4;
   color: white;
   padding: 10px 0;
   margin-top: 30px;
+}
+
+/* 숨기기 클래스 */
+.hidden {
+  display: none;
 }
