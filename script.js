@@ -1,7 +1,10 @@
 document.getElementById("show-love").addEventListener("click", function () {
-  const loveMessage = document.getElementById("love-message");
-  loveMessage.style.display = "block"; // 메시지 표시
+  // 사진 갤러리 보이게 하기
+  const photoGallery = document.getElementById("photo-gallery");
+  photoGallery.classList.remove("hidden");
+  photoGallery.classList.add("active");
 
-  const music = document.getElementById("background-music");
-  music.play(); // 배경 음악 재생
+  // 사랑 메시지 표시
+  const loveMessage = document.getElementById("love-message");
+  loveMessage.style.display = "block";
 });
