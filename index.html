@@ -1,235 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Letter for Klara</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to top, #ffb3b3, #fff5e6);
-            color: #333;
-            text-align: center;
-            padding: 20px;
-            margin: 0;
-            box-sizing: border-box;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-top: 50px;
-            color: #ff66b2;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .scroll-guide {
-            font-size: 1.5rem;
-            color: #ff66b2;
-            margin-top: 30px;
-            font-weight: bold;
-        }
-
-        .click-btn {
-            background-color: #ff66b2;
-            color: white;
-            padding: 12px 24px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 50px;
-        }
-
-        .click-btn:hover {
-            background-color: #ff3385;
-        }
-
-        .popup-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 30px;
-            display: none;
-        }
-
-        .popup-gallery div {
-            margin: 10px;
-            padding: 15px;
-            border: 3px solid #fff;
-            border-radius: 15px;
-            width: 180px;
-            height: 180px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .popup-gallery div:hover {
-            transform: scale(1.1);
-        }
-
-        .popup-gallery img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .popup-image {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 15px;
-            z-index: 1000;
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        .popup-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #ff66b2;
-            color: white;
-            font-size: 1.2rem;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-
-        .love-letter {
-            display: none;
-            background-color: #ff66b2;
-            color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 600px;
-            margin: auto;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-top: 30px;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .love-letter p {
-            margin-bottom: 20px;
-        }
-
-        .clouds {
-            position: absolute;
-            top: 30px;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 100px;
-            background: url('https://www.transparenttextures.com/patterns/clouds.png');
-            background-size: cover;
-            z-index: -1;
-        }
-
-        /* 모바일 최적화 */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .click-btn {
-                font-size: 1.1rem;
-                padding: 10px 20px;
-            }
-
-            .popup-gallery div {
-                width: 120px;
-                height: 120px;
-            }
-
-            .love-letter {
-                font-size: 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Memories 🌸</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    <h1>🌸 Our Beautiful Moments 🌸</h1>
+    <p>Here's a collection of our sweetest memories together! 💖</p>
+  </header>
 
-    <!-- 배경에 구름 효과 추가 -->
-    <div class="clouds"></div>
-
-    <h1>For My Lovely Klara ❤️</h1>
-    <p class="scroll-guide">👇 Scroll down my baby ❤️</p>
-    
-    <div id="scroll-btn">
-        <button class="click-btn" id="clickMeBtn">Click me</button>
+  <main>
+    <!-- 사진 컨테이너 (기본적으로 숨겨짐) -->
+    <div id="photo-gallery" class="hidden">
+      <img src="photo1.jpg" alt="Memory 1" class="gallery-photo">
+      <img src="photo2.jpg" alt="Memory 2" class="gallery-photo">
+      <img src="photo3.jpg" alt="Memory 3" class="gallery-photo">
+      <img src="photo4.jpg" alt="Memory 4" class="gallery-photo">
+      <img src="photo5.jpg" alt="Memory 5" class="gallery-photo">
     </div>
 
-    <!-- 갤러리 사진들 -->
-    <div class="popup-gallery" id="gallery">
-        <div id="imagePopup1" class="popup-image">
-            <img src="photo1.jpg" alt="Couple Photo 1">
-            <button class="close-btn" onclick="closePopup()">X</button>
-        </div>
-        <div id="imagePopup2" class="popup-image">
-            <img src="photo2.jpg" alt="Couple Photo 2">
-            <button class="close-btn" onclick="closePopup()">X</button>
-        </div>
-        <div id="imagePopup3" class="popup-image">
-            <img src="photo3.jpg" alt="Couple Photo 3">
-            <button class="close-btn" onclick="closePopup()">X</button>
-        </div>
-        <div id="imagePopup4" class="popup-image">
-            <img src="photo4.jpg" alt="Couple Photo 4">
-            <button class="close-btn" onclick="closePopup()">X</button>
-        </div>
-        <div id="imagePopup5" class="popup-image">
-            <img src="photo5.jpg" alt="Couple Photo 5">
-            <button class="close-btn" onclick="closePopup()">X</button>
-        </div>
-    </div>
+    <!-- 버튼 -->
+    <button id="show-love">Click Me Baby 💕</button>
+    <p id="love-message" style="display: none;">Every moment with you is precious. I love you forever! 💖</p>
+  </main>
 
-    <div class="love-letter" id="loveLetter">
-        <p>My dearest Klara,</p>
-        <p>I want to begin by telling you how deeply sorry I am for the moments when I wasn’t my best for you. I never meant to make you feel hurt or unappreciated, and I regret every second of it. But above all, I want you to know this: My love for you is infinite, and every day with you is a blessing. Even when we’re far apart, my heart beats only for you. You are my everything.</p>
-        <p>We may have our ups and downs, but I promise you this—no matter what happens, I will always choose you. You are the love of my life, and I will spend every moment showing you just how much you mean to me. I vow to love you, to care for you, to stand by you, and to grow with you, for the rest of my life.</p>
-        <p>I am here for you, through thick and thin, and I will always cherish you. Together, we will create a future full of love, joy, and beautiful memories. I love you more than words can say, and I always will. Forever yours, Junseong 💖</p>
-    </div>
+  <footer>
+    <p>&copy; 2025 Junseong Park. All rights reserved.</p>
+  </footer>
 
-    <script>
-        let clickBtn = document.getElementById("clickMeBtn");
-        let gallery = document.getElementById("gallery");
-        let imagePopup1 = document.getElementById("imagePopup1");
-        let imagePopup2 = document.getElementById("imagePopup2");
-        let imagePopup3 = document.getElementById("imagePopup3");
-        let imagePopup4 = document.getElementById("imagePopup4");
-        let imagePopup5 = document.getElementById("imagePopup5");
-        let loveLetter = document.getElementById("loveLetter");
-
-        let clickCount = 0;
-
-        clickBtn.addEventListener("click", function() {
-            clickCount++;
-
-            if (clickCount === 1) {
-                gallery.style.display = "flex";  // 첫 클릭 시 갤러리 사진들 나타나게
-                setTimeout(function() {
-                    imagePopup1.style.display = "block";
-                    imagePopup2.style.display = "block";
-                    imagePopup3.style.display = "block";
-                    imagePopup4.style.display = "block";
-                    imagePopup5.style.display = "block";
-                }, 500); // 0.5초 뒤에 팝업들이 나타나도록 설정
-                clickBtn.textContent = "Click me one more time";
+  <script src="script.js"></script>
+</body>
+</html>
